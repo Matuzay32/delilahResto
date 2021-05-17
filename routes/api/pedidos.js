@@ -175,10 +175,12 @@ router.delete("/:pedidoId",middlewares.rol,async (req,res)=>{
         ultimoPedido = await Pedido.create(pedido);
 
         res.status(200).send("agregaste 1 producto")
+        
     }
     console.log("este es mi carrito", carrito);
     console.log("esta es mi cabecera",usuario.usuarioId);
-    return carrito
+    return carrito;
+    
 
 }
 
