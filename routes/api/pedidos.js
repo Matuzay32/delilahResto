@@ -4,7 +4,7 @@ const {Pedido }                  = require("../../db");
 const {productoPedido}          =require("../../db");
 const {User}                    = require("../../db");
 const {Producto}                = require("../../db");
-const {ProductoPedido}          = require("../../db");
+
 const productos                 = require("../../models/productos");
 var carrito                     =[];
 const { QueryTypes }            = require('sequelize');
