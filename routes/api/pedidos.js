@@ -139,7 +139,7 @@ router.post("/enviar",async (req,res,)=>{
   
 //Esta ruta borra el pedido Solamente siendo administrador se puede borrar el pedido Usuario = 0  Administrador = 1
 
-router.delete("/:pedidoId",middlewares.rol,async (req,res)=>{
+router.delete("/:carritoPedidoId",middlewares.rol,async (req,res)=>{
 
     var cabecera = req.headers["user-token"];
     var usuario =  jwt.decode(cabecera,"frase secreta")
@@ -150,8 +150,8 @@ router.delete("/:pedidoId",middlewares.rol,async (req,res)=>{
         return false;
     }    
     
-    await Pedido.destroy({
-            where:{pedidoId: req.params.pedidoId}
+    await DetallesPedido.destroy({
+            where:{carritoPedidoId: req.params.carritoPedidoId}
         });
         res.json({succcess: "producto borrado"});
         
