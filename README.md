@@ -307,12 +307,12 @@ http://localhost:3000/api/pedidos/enviar POST: Esta ruta se debe usar despues de
 
 
 
-
+http://localhost:3000/api/pedidos/{carritoPedidoId} DELETE:  Esta ruta sirve para eliminar un detalle de pedido según  el carritoPedidoId del mismo, este end point también, puede ser utilizado  únicamente  por un usuario con  privilegios de Administrador.
 
 
 ```
 
-http://localhost:3000/api/pedidos/{carritoPedidoId} DELETE:  Esta ruta sirve para eliminar un detalle de pedido según  el carritoPedidoId del mismo, este end point también, puede ser utilizado  únicamente  por un usuario con  privilegios de Administrador.
+
 
 //Como ayuda extra este end point borra todo segun el carritoId por que cada pedido que se hace por el carro genera un carritoId en caso de que sean varios productos los que se mandan al carro solamente se genera un mismo CarritoId 
 
