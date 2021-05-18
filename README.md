@@ -305,7 +305,7 @@ http://localhost:3000/api/pedidos/carrito POST: Esta ruta requiere el TOKEN en l
 http://localhost:3000/api/pedidos/enviar POST: Esta ruta se debe usar despues del carro para poder enviar lo que el carro tiene, simplemente se envia lo del carro, una ves que este tiene todos los requisitos
 
 
-
+----
 
 http://localhost:3000/api/pedidos/{carritoPedidoId} DELETE:  Esta ruta sirve para eliminar un detalle de pedido según  el carritoPedidoId del mismo, este end point también, puede ser utilizado  únicamente  por un usuario con  privilegios de Administrador.
 
