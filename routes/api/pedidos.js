@@ -21,7 +21,7 @@ const ROL_ADMIN = 1;
 router.get("/",middlewares.rol, async(req,res)=>{
     
     const pedidos =  await DetallesPedido.findAll({
-        attributes: ["userId",'carritoPedidoId',"createdAt"],
+        attributes: ["userId",'carritoPedidoId',"createdAt","cantidad","estado"],
         include: [
              {
                 model:Pedido,
@@ -59,7 +59,7 @@ router.get("/misPedidos", middlewares.checkToken, async(req,res)=>{
     const pedidos =  await DetallesPedido.findAll({
         where: {
            userId: playLoad.usuarioId 
-        },attributes: ["userId",'carritoPedidoId'],
+        },attributes: ["userId",'carritoPedidoId',"createdAt","cantidad","estado"],
         include: [
              {
                 model:Pedido,
@@ -83,7 +83,7 @@ router.post("/carrito",middlewares.checkToken,agregaraCarrito);
 
 
 //Esta ruta es para modificar un pedido Unicamente se puede tener acceso si se es Administrador 0= Usuario 1= ADMIN
-router.put("/:pedidoId",middlewares.rol,async (req,res)=>{
+router.put("/:carritoPedidoId",middlewares.rol,async (req,res)=>{
 
         var cabecera = req.headers["user-token"];
         var usuario =  jwt.decode(cabecera,"frase secreta")
@@ -93,9 +93,11 @@ router.put("/:pedidoId",middlewares.rol,async (req,res)=>{
             res.status(400).send(`Usuario invalido para cambiar estado de pedido.`);
             return false;
         }
+        
+        await DetallesPedido.update(req.body,{
+            where:{carritoPedidoId: req.params.carritoPedidoId}
 
-        await Pedido.update(req.body,{
-            where:{pedidoId: req.params.pedidoId}
+            
         });
         res.json({succcess: "update correcto"});
 

@@ -8,6 +8,11 @@ module.exports =(sequelize,type) =>{
             autoIncrement:true
         },
         cantidad:type.INTEGER, 
+        estado: {
+            // creo un estado en Proceso como estado de defecto // puede cambiarse luego con los endPoints
+            type:type.STRING,
+            defaultValue:"En proceso"
+        },
     })
 
     return DetallesPedido
