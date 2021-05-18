@@ -25,7 +25,7 @@ router.get("/",middlewares.rol, async(req,res)=>{
         include: [
              {
                 model:Pedido,
-                attributes: ['userId',"direccionEnvio"]
+                attributes: ['userd','username','email','direccion','numero']
             } , {
                 model:Producto,
                 attributes: ['id','nombre','descripcion','precio']
@@ -107,6 +107,8 @@ router.post("/enviar",async (req,res,)=>{
 
     //console.log(carrito);
    //var podructo = await productoPedido.create(carrito[0]);
+   var cabecera = req.headers["user-token"];
+   var usuario=  jwt.decode(cabecera,"frase secreta")
     
    for (let index = 0; index < carrito.length; index++) {
        
@@ -120,7 +122,8 @@ router.post("/enviar",async (req,res,)=>{
             var itemDetalle = {
                 cantidad: plato.cantidad,
                 platoId: plato.platoId,
-                carritoPedidoId: ultimoPedido.pedidoId
+                carritoPedidoId: ultimoPedido.pedidoId,
+                userId:usuario.usuarioId
             }
             var detalle = await DetallesPedido.create(itemDetalle);
             detalles.push(detalle);
@@ -165,7 +168,6 @@ router.delete("/:pedidoId",middlewares.rol,async (req,res)=>{
     var pedido = {
         //platoId: data.platoId,
         tipoPago: data.tipoPago,
-        direccionEnvio : data.direccionEnvio,
         userId:usuario.usuarioId,
         platos 
     }
