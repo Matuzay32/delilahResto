@@ -59,7 +59,7 @@ router.get("/misPedidos", middlewares.checkToken, async(req,res)=>{
     const pedidos =  await DetallesPedido.findAll({
         where: {
            userId: playLoad.usuarioId 
-        },attributes: ["userId",'carritoPedidoId',"createdAt"],
+        },attributes: ["userId",'carritoPedidoId'],
         include: [
              {
                 model:Pedido,
