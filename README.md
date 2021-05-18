@@ -282,16 +282,18 @@ http://localhost:3000/api/pedidos/carrito POST: Esta ruta requiere el TOKEN en l
         
         
         
-        {
+         {
         "tipoPago": "efectivo",
+        "direccionEnvio":"la direccion del envio",
         "platos": [{
         "platoId": 1,
         "cantidad": 3
         },
-        {
+                {
         "platoId": 2,
         "cantidad": 1
-        }]
+                     }]
+        }
         
 }
 
