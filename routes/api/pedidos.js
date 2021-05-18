@@ -1,9 +1,10 @@
 const router                    = require("express").Router();
 const  sequelize                = require("sequelize");
-const {Pedido }                  = require("../../db");
+const {Pedido}                  = require("../../db");
 const {productoPedido}          =require("../../db");
 const {User}                    = require("../../db");
 const {Producto}                = require("../../db");
+const {DetallesPedido}          =require("../../db");
 
 const productos                 = require("../../models/productos");
 var carrito                     =[];
@@ -11,7 +12,6 @@ const { QueryTypes }            = require('sequelize');
 const middlewares               = require("../middlewares");
 const jwt      = require("jwt-simple");
 
-const {DetallesPedido}          =require("../../db");
 var ultimoPedido = null;
 const ROL_ADMIN = 1;
 
@@ -19,16 +19,17 @@ const ROL_ADMIN = 1;
 
 //Esta ruta es para obtener todos los pedidos Unicamente se puede tener acceso siendo administrador en el body se pone el rol =0 Usuario 1=Admin
 router.get("/",middlewares.rol, async(req,res)=>{
+    
     const pedidos =  await Pedido.findAll({
         attributes: ['pedidoId','estado','pedidoId','tipoPago'],
         include: [
             {
                 model:User,
                 attributes: ['id','username','email','direccion','numero']
-            },{
+            } ,{
                 model:Producto,
                 attributes: ['id','nombre','descripcion','precio']
-            }
+            } 
           ]
       });
     

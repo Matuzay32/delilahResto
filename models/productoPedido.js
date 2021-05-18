@@ -5,7 +5,8 @@ module.exports =(sequelize,type) =>{
         productoPedidoId:{
             type: type.INTEGER,
             primaryKey:true,
-            autoIncrement:true
+            autoIncrement:true,
+            
         }
         
        
