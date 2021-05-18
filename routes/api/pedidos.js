@@ -25,7 +25,7 @@ router.get("/",middlewares.rol, async(req,res)=>{
         include: [
              {
                 model:Pedido,
-                attributes: ['userd','username','email','direccion','numero']
+                attributes: ['direccionEnvio']
             } , {
                 model:Producto,
                 attributes: ['id','nombre','descripcion','precio']
@@ -56,18 +56,20 @@ router.get("/misPedidos", middlewares.checkToken, async(req,res)=>{
 
     console.log("Token",playLoad.usuarioId);
     
-    const pedidos =  await Pedido.findAll({
+    const pedidos =  await DetallesPedido.findAll({
         where: {
            userId: playLoad.usuarioId 
-        },attributes: ['pedidoId','estado','pedidoId','tipoPago'],include: [
-            {
-                model:User,
-                attributes: ['id','username','email','direccion','numero']
-            },{
+        },attributes: ['carritoPedidoId'],
+        include: [
+             {
+                model:Pedido,
+                attributes: ['userd','username','email','direccion','numero']
+            } , {
                 model:Producto,
                 attributes: ['id','nombre','descripcion','precio']
-            }
-          ]});
+            } 
+          ]
+      });
     
     res.json(pedidos);
 
@@ -169,6 +171,7 @@ router.delete("/:pedidoId",middlewares.rol,async (req,res)=>{
         //platoId: data.platoId,
         tipoPago: data.tipoPago,
         userId:usuario.usuarioId,
+        direccionEnvio:data.direccionEnvio,
         platos 
     }
     if (/*pedido.platoId == "" ||*/ !platosElegidosValido(platos) || pedido.tipoPago == "" || pedido.userId == "") {
