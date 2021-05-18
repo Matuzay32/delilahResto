@@ -20,13 +20,13 @@ const ROL_ADMIN = 1;
 //Esta ruta es para obtener todos los pedidos Unicamente se puede tener acceso siendo administrador en el body se pone el rol =0 Usuario 1=Admin
 router.get("/",middlewares.rol, async(req,res)=>{
     
-    const pedidos =  await Pedido.findAll({
-        attributes: ['pedidoId','estado','pedidoId','tipoPago'],
+    const pedidos =  await DetallesPedido.findAll({
+        attributes: ['carritoPedidoId'],
         include: [
-            {
-                model:User,
-                attributes: ['id','username','email','direccion','numero']
-            } ,{
+             {
+                model:Pedido,
+                attributes: ['userId',"direccionEnvio"]
+            } , {
                 model:Producto,
                 attributes: ['id','nombre','descripcion','precio']
             } 
@@ -165,6 +165,7 @@ router.delete("/:pedidoId",middlewares.rol,async (req,res)=>{
     var pedido = {
         //platoId: data.platoId,
         tipoPago: data.tipoPago,
+        direccionEnvio : data.direccionEnvio,
         userId:usuario.usuarioId,
         platos 
     }

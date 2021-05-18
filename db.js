@@ -1,7 +1,6 @@
 const  Sequelize  = require("sequelize");
 const PedidoModel = require("./models/pedido");
 const ProductoModel = require("./models/productos");
-const ProductoPedidoModel = require("./models/productoPedido");
 
 const DetallesPedidoModel = require("./models/detallesPedido");
 
@@ -18,7 +17,6 @@ const sequelize_ruta = new Sequelize(path,{
     dialect: "mssql"
 
 })
-const productoPedido = ProductoPedidoModel(sequelize_ruta,Sequelize);
 
 //Producto contiene el modelo de productos , como primer parametro la ruta, y como segundo parametro el modulo de Sequelize
 const Producto = ProductoModel(sequelize_ruta,Sequelize);
@@ -36,15 +34,12 @@ const DetallesPedido = DetallesPedidoModel(sequelize_ruta,Sequelize);
  
 Pedido.belongsTo(User);
 Pedido.belongsTo(Producto);
-Pedido.belongsTo(productoPedido);
-
+DetallesPedido.belongsTo(User);
 DetallesPedido.belongsTo(Pedido);
 DetallesPedido.belongsTo(Producto);
  
 /* Producto.belongsToMany(productoPedido, { through: productoPedido });
 productoPedido.belongsToMany(Producto, { through: productoPedido }); */
-productoPedido.belongsTo(User);
-productoPedido.belongsTo(Producto);
 
 
 
@@ -58,6 +53,5 @@ module.exports ={
     Producto,
     User,
     Pedido,
-    productoPedido,
     DetallesPedido
 }
