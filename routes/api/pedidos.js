@@ -21,7 +21,7 @@ const ROL_ADMIN = 1;
 router.get("/",middlewares.rol, async(req,res)=>{
     
     const pedidos =  await DetallesPedido.findAll({
-        attributes: ['carritoPedidoId'],
+        attributes: ["userId",'carritoPedidoId',"createdAt"],
         include: [
              {
                 model:Pedido,
@@ -59,11 +59,11 @@ router.get("/misPedidos", middlewares.checkToken, async(req,res)=>{
     const pedidos =  await DetallesPedido.findAll({
         where: {
            userId: playLoad.usuarioId 
-        },attributes: ['carritoPedidoId'],
+        },attributes: ["userId",'carritoPedidoId',"createdAt"],
         include: [
              {
                 model:Pedido,
-                attributes: ['userd','username','email','direccion','numero']
+                attributes: ['direccionEnvio']
             } , {
                 model:Producto,
                 attributes: ['id','nombre','descripcion','precio']
