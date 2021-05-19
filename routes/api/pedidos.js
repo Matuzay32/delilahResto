@@ -20,6 +20,15 @@ var contador =1;
 
 //Esta ruta es para obtener todos los pedidos Unicamente se puede tener acceso siendo administrador en el body se pone el rol =0 Usuario 1=Admin
 router.get("/",middlewares.rol, async(req,res)=>{
+
+    var cabecera = req.headers["user-token"];
+        var usuario =  jwt.decode(cabecera,"frase secreta")
+
+        if(!usuario || usuario.rolUsuario != ROL_ADMIN) {
+
+            res.status(400).send(`Usuario invalido para cambiar estado de pedido.`);
+            return false;
+        }
     
     const pedidos =  await DetallesPedido.findAll({
         attributes: ["userId","detallePedidoId",'carritoPedidoId',"createdAt", "estado","tipoPago","direccionEnvio","cantidad"],

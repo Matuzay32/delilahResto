@@ -344,7 +344,7 @@ detallePedidoId
 
 
 
-//Como ayuda extra este end point borra todo segun el carritoId por que cada pedido que se hace por el carro genera un carritoId en caso de que sean varios productos los que se mandan al carro solamente se genera un mismo CarritoId 
+ 
 
 
 ```javascript
@@ -380,6 +380,64 @@ detallePedidoId
 
 ```
 ---
+
+
+
+
+
+
+
+http://localhost:3000/api/pedidos/masivo/{carritoPedidoId} PUT:  Esta ruta sirve para cambiar un detalle de forma masiva en base  al (id)
+carritoPedidoId, se puede utilizar para cambiar el metodo de pago el estado del pedido y la direccion de forma mas rapida
+
+```
+
+
+
+ 
+
+
+```javascript
+//Example Header
+
+ {
+        
+        
+        "user-token": "EL TOKEN QUE SE GENERA CUANDO SE HACE USO DE LA RUTA LOGIN"
+        
+        
+ 
+}
+```
+
+
+```javascript
+//Example body
+
+ {
+        
+        
+                {
+                "tipoPago":"Credito",
+                "estado":"Terminado",
+                "direccionEnvio":"Direccion de envio"
+                }
+        
+}
+
+        
+ 
+
+```
+---
+
+
+
+
+
+
+
+
 
 
 ## Desarrollador 
