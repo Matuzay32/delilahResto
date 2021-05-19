@@ -77,7 +77,7 @@ router.post("/carrito",middlewares.checkToken,agregaraCarrito);
 
 
 //Esta ruta es para modificar un pedido Unicamente se puede tener acceso si se es Administrador 0= Usuario 1= ADMIN
-router.put("/:detallePedidoId",middlewares.rol,async (req,res)=>{
+router.put("/:carritoPedidoId",middlewares.rol,async (req,res)=>{
 
         var cabecera = req.headers["user-token"];
         var usuario =  jwt.decode(cabecera,"frase secreta")
@@ -89,7 +89,7 @@ router.put("/:detallePedidoId",middlewares.rol,async (req,res)=>{
         }
 
         await DetallesPedido.update(req.body,{
-            where:{detallePedidoId: req.params.detallePedidoId}
+            where:{carritoPedidoId: req.params.carritoPedidoId}
         });
         res.json({succcess: "update correct"});
 
