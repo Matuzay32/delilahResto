@@ -334,6 +334,54 @@ http://localhost:3000/api/pedidos/{carritoPedidoId} DELETE:  Esta ruta sirve par
 
 
 
+
+
+
+http://localhost:3000/api/pedidos/{detallePedidoId} PUT:  Esta ruta sirve para cambiar un detalle de forma individual en base  al (id)
+detallePedidoId
+
+```
+
+
+
+//Como ayuda extra este end point borra todo segun el carritoId por que cada pedido que se hace por el carro genera un carritoId en caso de que sean varios productos los que se mandan al carro solamente se genera un mismo CarritoId 
+
+
+```javascript
+//Example Header
+
+ {
+        
+        
+        "user-token": "EL TOKEN QUE SE GENERA CUANDO SE HACE USO DE LA RUTA LOGIN"
+        
+        
+ 
+}
+```
+
+
+```javascript
+//Example body
+
+ {
+        
+        
+        
+                {
+                "cantidad":1,
+                "platoId":10
+                }
+        
+}
+
+        
+ 
+
+```
+---
+
+
 ## Desarrollador 
 
 - Ezequiel Rey - [eze.rey92@gmail.com]
