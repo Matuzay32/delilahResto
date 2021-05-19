@@ -169,6 +169,42 @@ router.delete("/:carritoPedidoId",middlewares.rol,async (req,res)=>{
         
 });
 
+
+
+
+
+
+router.put("/masivo/:carritoPedidoId",middlewares.rol,async (req,res)=>{
+
+    var cabecera = req.headers["user-token"];
+    var usuario =  jwt.decode(cabecera,"frase secreta")
+
+    if(!usuario || usuario.rolUsuario != ROL_ADMIN) {
+
+        res.status(400).send(`Usuario invalido para cambiar estado de pedido.`);
+        return false;
+    }
+            
+
+            await DetallesPedido.update(req.body,{
+                where:{carritoPedidoId: req.params.carritoPedidoId}
+                
+    });
+       
+
+       
+
+       
+       
+        
+
+   
+    res.json({succcess: "update correct"});
+  
+    
+});
+
+
 //Esta funcion es el carro de compras
  async function agregaraCarrito(req, res) {
   
