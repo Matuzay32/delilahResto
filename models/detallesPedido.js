@@ -13,6 +13,15 @@ module.exports =(sequelize,type) =>{
             type:type.STRING,
             defaultValue:"En proceso"
         },
+        tipoPago: {
+            // creo un estado en Proceso como estado de defecto // puede cambiarse luego con los endPoints
+            type:type.STRING,
+            
+        },
+        direccionEnvio:{
+            type:type.STRING,
+            
+        }
     })
 
     return DetallesPedido

@@ -127,6 +127,8 @@ router.post("/enviar",async (req,res,)=>{
             var itemDetalle = {
                 cantidad: plato.cantidad,
                 platoId: plato.platoId,
+                tipoPago: ultimoPedido.tipoPago,
+                direccionEnvio:ultimoPedido.direccionEnvio,
                 carritoPedidoId: ultimoPedido.pedidoId,
                 userId:usuario.usuarioId
             }
