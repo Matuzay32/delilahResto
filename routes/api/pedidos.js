@@ -25,7 +25,7 @@ router.get("/",middlewares.rol, async(req,res)=>{
         include: [
              {
                 model:Pedido,
-                attributes: ['direccionEnvio']
+                attributes: ['direccionEnvio',"tipoPago"]
             } , {
                 model:Producto,
                 attributes: ['id','nombre','descripcion','precio']
@@ -63,7 +63,7 @@ router.get("/misPedidos", middlewares.checkToken, async(req,res)=>{
         include: [
              {
                 model:Pedido,
-                attributes: ['direccionEnvio']
+                attributes: ['direccionEnvio',"tipoPago"]
             } , {
                 model:Producto,
                 attributes: ['id','nombre','descripcion','precio']
