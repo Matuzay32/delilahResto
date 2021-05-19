@@ -14,6 +14,7 @@ const jwt      = require("jwt-simple");
 
 var ultimoPedido = null;
 const ROL_ADMIN = 1;
+var contador =1;
 
 
 
@@ -77,7 +78,7 @@ router.post("/carrito",middlewares.checkToken,agregaraCarrito);
 
 
 //Esta ruta es para modificar un pedido Unicamente se puede tener acceso si se es Administrador 0= Usuario 1= ADMIN
-router.put("/:carritoPedidoId",middlewares.rol,async (req,res)=>{
+router.put("/:detallePedidoId",middlewares.rol,async (req,res)=>{
 
         var cabecera = req.headers["user-token"];
         var usuario =  jwt.decode(cabecera,"frase secreta")
@@ -87,12 +88,23 @@ router.put("/:carritoPedidoId",middlewares.rol,async (req,res)=>{
             res.status(400).send(`Usuario invalido para cambiar estado de pedido.`);
             return false;
         }
+                
 
-        await DetallesPedido.update(req.body,{
-            where:{carritoPedidoId: req.params.carritoPedidoId}
+                await DetallesPedido.update(req.body,{
+                    where:{detallePedidoId: req.params.detallePedidoId}
+                    
         });
-        res.json({succcess: "update correct"});
+           
 
+           
+
+           
+           
+            
+
+       
+        res.json({succcess: "update correct"});
+      
         
 });
 
