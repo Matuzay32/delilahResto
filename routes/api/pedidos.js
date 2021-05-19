@@ -22,7 +22,7 @@ var contador =1;
 router.get("/",middlewares.rol, async(req,res)=>{
     
     const pedidos =  await DetallesPedido.findAll({
-        attributes: ["userId",'carritoPedidoId',"createdAt", "estado","tipoPago","direccionEnvio","cantidad"],
+        attributes: ["userId","detallePedidoId",'carritoPedidoId',"createdAt", "estado","tipoPago","direccionEnvio","cantidad"],
         include: [
              {
                 model:Producto,
@@ -57,7 +57,7 @@ router.get("/misPedidos", middlewares.checkToken, async(req,res)=>{
     const pedidos =  await DetallesPedido.findAll({
         where: {
            userId: playLoad.usuarioId 
-        },  attributes: ["userId",'carritoPedidoId',"createdAt", "estado","tipoPago","direccionEnvio","cantidad"],
+        },  attributes: ["userId","detallePedidoId",'carritoPedidoId',"createdAt", "estado","tipoPago","direccionEnvio","cantidad"],
         include: [
              {
                 model:Producto,
